@@ -1,0 +1,29 @@
+{
+  "name": "functions-motherboard-listener",
+  "version": "1.0.0",
+  "description": "Firebase Cloud Function that listens to Pub/Sub events and sends push notifications via FCM",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint . --ext .ts",
+    "serve": "firebase emulators:start",
+    "deploy": "firebase deploy --only functions:sub_motherboard_sendNotification",
+    "start": "npm run serve"
+  },
+  "dependencies": {
+    "@google-cloud/pubsub": "^5.2.0",
+    "firebase-admin": "^11.11.1",
+    "firebase-functions": "^6.4.0"
+  },
+  "devDependencies": {
+    "@types/google-cloud__pubsub": "^0.18.1",
+    "@types/node": "^20.0.0",
+    "eslint": "^8.50.0",
+    "eslint-config-google": "^0.14.0",
+    "typescript": "^5.2.2"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "private": true
+}

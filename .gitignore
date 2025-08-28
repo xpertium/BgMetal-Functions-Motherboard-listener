@@ -1,0 +1,18 @@
+# Node
+node_modules/
+dist/
+yarn-debug.log
+yarn-error.log
+
+# Firebase
+.firebase/
+.firebaserc
+firebase-debug.log
+
+# Build
+lib/
+dist/
+
+# Environment
+.env
+functions-motherboard-events/.env
