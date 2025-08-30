@@ -28,6 +28,7 @@ export const handlePubSubEvent = async (event: MessagePublishedData<any>) => {
     const tokensSnapshot = await db
       .collection("deviceTokens")
       .where("userId", "==", data.userId)
+      .where("active", "==", true)
       .get();
 
 

@@ -25,7 +25,7 @@ export const sendPushNotification = async (
         .get();
 
       snapshot.forEach((doc) => {
-        doc.ref.delete();
+        doc.ref.update({ active: false});
       });
     }
   }
