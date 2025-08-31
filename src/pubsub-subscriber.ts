@@ -55,11 +55,15 @@ export const handlePubSubEvent = async (event: MessagePublishedData<any>) => {
       }
 
       const template = templateDoc.data();
+      const formatted = new Date(data.createdAt)
+        .toLocaleDateString("es-PE", { day: "2-digit", month: "2-digit", year: "numeric" })
+        .replace(/\//g, "-");
+
       const notification = {
         title: template?.title
           ? template?.title.replace("{oldStatus}", data.oldStatus).replace("{newStatus}", data.newStatus)
           : "Tu imagen ha sido actualizada!",
-        body: template?.body?.replace("{shortCreatedDate}", data.createdAt),
+        body: template?.body?.replace("{shortCreatedDate}", formatted),
       };
       console.log(`Sending notification`, notification);
       return sendPushNotification(token, notification);
