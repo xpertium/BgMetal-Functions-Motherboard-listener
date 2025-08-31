@@ -1,6 +1,7 @@
 import * as admin from "firebase-admin";
 import { MessagePublishedData } from "firebase-functions/v2/pubsub";
 import { sendPushNotification } from "./fcm-service";
+import { before } from "node:test";
 admin.initializeApp();
 
 export const handlePubSubEvent = async (event: MessagePublishedData<any>) => {
@@ -55,10 +56,12 @@ export const handlePubSubEvent = async (event: MessagePublishedData<any>) => {
 
       const template = templateDoc.data();
       const notification = {
-        title: template?.title || "Status Update",
+        title: template?.title
+          ? template?.title.replace("{oldStatus}", data.oldStatus).replace("{newStatus}", data.newStatus)
+          : "Tu imagen ha sido actualizada!",
         body: template?.body?.replace("{status}", data.newStatus),
       };
-
+      console.log(`Sending notification`, notification);
       return sendPushNotification(token, notification);
     });
 
