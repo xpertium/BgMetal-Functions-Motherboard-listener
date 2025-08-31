@@ -59,7 +59,7 @@ export const handlePubSubEvent = async (event: MessagePublishedData<any>) => {
         title: template?.title
           ? template?.title.replace("{oldStatus}", data.oldStatus).replace("{newStatus}", data.newStatus)
           : "Tu imagen ha sido actualizada!",
-        body: template?.body?.replace("{status}", data.newStatus),
+        body: template?.body?.replace("{shortCreatedDate}", data.createdAt),
       };
       console.log(`Sending notification`, notification);
       return sendPushNotification(token, notification);
