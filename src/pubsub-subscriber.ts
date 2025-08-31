@@ -11,6 +11,7 @@ export const handlePubSubEvent = async (event: MessagePublishedData<any>) => {
       userId: string;
       oldStatus: string;
       newStatus: string;
+      createdAt: string;
       updatedAt: string;
     };
 
